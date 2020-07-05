@@ -34,10 +34,11 @@ app.get("/", async(req, res) => {
         visitor = await Visitor.findByIdAndUpdate(visitor._id, {count: visitor.count +1}, options);
     }
     let table = "<table>";
-    table += "<tr><th>id</th><th>name</th><th>count</th></tr>";
+    table += "<thead><tr><th>id</th><th>name</th><th>count</th></tr></thead>";
+    table+= "<tbody>"
     const visitors= await Visitor.find();
     let table1 = visitors.forEach(visitor => {table += "<tr><td>"+visitor.id+"</td><td>"+visitor.name+"</td><td>"+visitor.count+"</td></tr>"})
-    table += "</table>";
+    table += "</tbody></table>";
     res.status(200).send(table);
    
 })
