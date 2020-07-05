@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors= require("cors");
 const moment = require('moment');
@@ -6,6 +7,7 @@ const Visitor = require('./src/models/visitor.model');
 
 const initDatabase = require('./src/db.js');
 
+const port = 3000;
 
 initDatabase();
 
@@ -28,4 +30,4 @@ app.get("/", async(req, res) => {
     
 })
 
-module.exports = app;
+app.listen(port, () => console.log(`Listening on port ${port}`)); 
