@@ -6,8 +6,8 @@ const visitorSchema = new Schema({
         type: String,
         required:[true, "Name is required"] 
     }, 
-    date:{ 
-        type: Date,
+    count:{ 
+        type: Number,
         required:[true, "date is required"]  
     }, 
 

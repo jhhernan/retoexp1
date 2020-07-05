@@ -23,11 +23,23 @@ app.get("/", async(req, res) => {
     }else {
         name = "Anónimo";
     }
-    let date = moment().toDate();
-    const visitor = await Visitor.create({name, date});
 
-    res.status(200).send("<h1>El visitante fue almacenado con éxito</h1>");
-    
+    let visitor = await Visitor.findOne({ name: name })
+    if (visitor===null || name === "Anónimo"){
+        visitor = await Visitor.create({name, count: 1});
+    }else {
+        const options = {
+            new: true,
+        };
+        visitor = await Visitor.findByIdAndUpdate(visitor._id, {count: visitor.count +1}, options);
+    }
+    let table = "<table>";
+    table += "<tr><th>id</th><th>name</th><th>count</th></tr>";
+    const visitors= await Visitor.find();
+    let table1 = visitors.forEach(visitor => {table += "<tr><td>"+visitor.id+"</td><td>"+visitor.name+"</td><td>"+visitor.count+"</td></tr>"})
+    table += "</table>";
+    res.status(200).send(table);
+   
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
