@@ -2,9 +2,9 @@ const express = require("express");
 const cors= require("cors");
 const moment = require('moment');
 
-const Visitor = require('./models/visitor.model');
+const Visitor = require('./src/models/visitor.model');
 
-const initDatabase = require('./db.js');
+const initDatabase = require('./src/db.js');
 
 
 initDatabase();
