@@ -6,10 +6,15 @@ const visitorSchema = new Schema({
         type: String,
         required:[true, "Name is required"] 
     }, 
-    count:{ 
-        type: Number,
+    email:{ 
+        type: String,
         required:[true, "date is required"]  
     }, 
+    password:{ 
+        type: String,
+        required:[true, "date is required"]  
+    }, 
+    
 
 },{
     timestamps: true,
